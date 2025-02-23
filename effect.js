@@ -3,6 +3,29 @@ $(window).load(function(){
 	$('.container').fadeIn('fast');
 });
 $('document').ready(function(){
+	$(".navbar-fixed-bottom").hide();
+    $(".balloons, .cake-cover, .message").hide();
+
+    // Display first message
+    $("body").append('<div id="introMessage1" class="intro-message"><p>Hey Neha, today is a special day...</p></div>');
+    
+    setTimeout(() => {
+        $("#introMessage1").fadeOut(500, function () {
+            $(this).remove();
+            
+            // Display second message with prompt
+            $("body").append('<div id="introMessage2" class="intro-message"><p>Are you ready for a surprise?</p><button id="startSequence" class="btn btn-primary">Let’s Begin!</button></div>');
+
+            // Start the sequence when the button is clicked
+            $("#startSequence").click(function () {
+                $("#introMessage2").fadeOut(500, function () {
+                    $(this).remove();
+                    $(".navbar-fixed-bottom").fadeIn();
+                    // Now the main sequence can start
+                });
+            });
+        });
+    }, 3000); // Show second message after 3 seconds
 		var vw;
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
